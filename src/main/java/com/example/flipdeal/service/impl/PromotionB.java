@@ -9,7 +9,7 @@ import com.example.flipdeal.utils.Common;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service
+@Service("promotionImplB")
 public class PromotionB implements PromotionStrategy {
 
     @Autowired
@@ -20,11 +20,11 @@ public class PromotionB implements PromotionStrategy {
         double discount = 0;
         String permotionTag = "";
 
-        if(product.getInventory() > flipDealConfig.getInventoryCount() ){
-            discount = Math.max(discount , Common.calculateDiscount(product.getPrice() , flipDealConfig.getTwelve() ));
+        if(product.getInventory() > Integer.parseInt( flipDealConfig.getInventoryCount() )){
+            discount = Math.max(discount , Common.calculateDiscount(product.getPrice() , Double.parseDouble(flipDealConfig.getDiscountTwelve())));
             permotionTag = "get 12% off";
         }else if( Arrival.NEW.name().equalsIgnoreCase(product.getArrival()) ){
-            discount = Math.max(discount , Common.calculateDiscount(product.getPrice() , flipDealConfig.getSeven() ));
+            discount = Math.max(discount , Common.calculateDiscount(product.getPrice() , Double.parseDouble(flipDealConfig.getDiscountSeven())));
             permotionTag = "get 7% off";
         }
 

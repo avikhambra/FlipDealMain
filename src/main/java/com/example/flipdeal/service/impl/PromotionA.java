@@ -10,7 +10,7 @@ import com.example.flipdeal.utils.Common;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service
+@Service("promotionImplA")
 public class PromotionA implements PromotionStrategy {
 
     @Autowired
@@ -21,24 +21,24 @@ public class PromotionA implements PromotionStrategy {
           double discount = 0;
           String permotionTag = "";
 
-          if(  (Origin.AFRICA.name().equalsIgnoreCase(product.getOrigin())  )){
-              discount = Math.max(discount , ( Common.calculateDiscount(product.getPrice() , flipDealConfig.getSeven()) ));
+          if(  (Origin.AFRICA.name().equalsIgnoreCase(product.getOrigin() )  )){
+              discount = Math.max(discount , ( Common.calculateDiscount(product.getPrice() , Double.parseDouble(flipDealConfig.getAfricaOrigin())) ));
               permotionTag = "get 7% off.";
           }
 
 
-           if(product.getRating() == flipDealConfig.getTwo() ){
-              discount = Math.max(discount , (Common.calculateDiscount(product.getPrice() , flipDealConfig.getFour()) ));
+           if(product.getRating() == 2 ){
+              discount = Math.max(discount , (Common.calculateDiscount(product.getPrice() , Double.parseDouble(flipDealConfig.getDiscountFour())) ));
               permotionTag = "get 4% off.";
-           }else if (product.getRating() < flipDealConfig.getTwo() ){
-              discount = Math.max(discount , ( Common.calculateDiscount(product.getPrice() , flipDealConfig.getEight()) ));
+           }else if (product.getRating() < 2 ){
+              discount = Math.max(discount , ( Common.calculateDiscount(product.getPrice() , Double.parseDouble(flipDealConfig.getDiscountEight())) ));
               permotionTag = "get 8% off.";
            }
 
            if( ( Category.ELECTRONICS.name().equalsIgnoreCase(product.getCategory() ) ||  ( Category.FURNISHING.name().equalsIgnoreCase(product.getCategory()) )  )){
 
-              if(product.getPrice() > flipDealConfig.getFiveHundred()){
-                  discount = Math.max(discount , Common.calculateDiscount(product.getPrice() , flipDealConfig.getHundred()) );
+              if(product.getPrice() > Integer.parseInt(flipDealConfig.getPriceFivehundred()) ){
+                  discount = Math.max(discount , Common.calculateDiscount(product.getPrice() , Double.parseDouble(flipDealConfig.getDiscountHundred())) );
                   permotionTag = "get 100Rs off.";
               }
 

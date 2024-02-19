@@ -21,19 +21,31 @@ public class FlipDealConfig {
     private String coverselfExchangeRatesUri;
 
 
-    private int two = 2;
 
-    private int four = 5;
-    private int seven = 7;
 
-    private int eight = 8;
+    @Value("${africa.origin.percentage}")
+    private String africaOrigin;
 
-    private int twelve = 12;
+    @Value("${discount.four}")
+    private String discountFour;
 
-    private int inventoryCount = 20;
+    @Value("${discount.eight}")
+    private String discountEight;
 
-    private int fiveHundred = 500;
+    @Value("${discount.hundred}")
+    private String discountHundred;
 
-    private int hundred = 100;
+    @Value("${discount.twelve}")
+    private String discountTwelve;
+
+    @Value("${inventory.count}")
+    private String inventoryCount;
+
+    @Value("${discount.seven}")
+    private String discountSeven;
+
+    @Value("${price.fivehundred}")
+    private String priceFivehundred;
+
 
 }
